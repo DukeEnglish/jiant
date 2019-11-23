@@ -1287,6 +1287,8 @@ class SamplingMultiTaskTrainer:
         training_data_fraction = params.pop("training_data_fraction", 1.0)
 
         params.assert_empty(cls.__name__)
+        log.info('runing here ___________________________', serialization_dir)
+
         return SamplingMultiTaskTrainer(
             model,
             patience=patience,
