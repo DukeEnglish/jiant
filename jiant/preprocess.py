@@ -582,7 +582,7 @@ def add_pytorch_transformers_vocab(vocab, tokenizer_name):
     elif tokenizer_name.startswith("roberta-"):
         tokenizer = RobertaTokenizer.from_pretrained(tokenizer_name)
     elif tokenizer_name.startswith("xlnet-"):
-        tokenizer = XLNetTokenizer.from_pretrained(tokenizer_name, do_lower_case=do_lower_case)
+        tokenizer = XLNetTokenizer.from_pretrained('/Users/ljy/Work/Reseach_academy/github/jiant/xlnet/', do_lower_case=do_lower_case)
     elif tokenizer_name.startswith("openai-gpt"):
         tokenizer = OpenAIGPTTokenizer.from_pretrained(tokenizer_name)
     elif tokenizer_name.startswith("gpt2"):

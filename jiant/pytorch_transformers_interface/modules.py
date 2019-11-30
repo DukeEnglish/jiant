@@ -330,6 +330,7 @@ class RobertaEmbedderModule(PytorchTransformersEmbedderModule):
     def __init__(self, args):
         super(RobertaEmbedderModule, self).__init__(args)
 
+
         self.model = pytorch_transformers.RobertaModel.from_pretrained(
             args.input_module, cache_dir=self.cache_dir, output_hidden_states=True
         )
@@ -383,6 +384,25 @@ class XLNetEmbedderModule(PytorchTransformersEmbedderModule):
 
     def __init__(self, args):
         super(XLNetEmbedderModule, self).__init__(args)
+
+        if args.chinese != 'zh':
+            self.model = pytorch_transformers.XLNetModel.from_pretrained(
+                args.input_module, cache_dir=self.cache_dir, output_hidden_states=True
+            )
+
+            self.tokenizer = pytorch_transformers.XLNetTokenizer.from_pretrained(
+                args.input_module, cache_dir=self.cache_dir, do_lower_case="uncased" in args.tokenizer
+            )  # TODO: Speed things up slightly by reusing the previously-loaded tokenizer.
+        else:
+            self.model = pytorch_transformers.XLNetModel.from_pretrained(
+                '/Users/ljy/Work/Reseach_academy/github/jiant/xlnet/', cache_dir=self.cache_dir, output_hidden_states=True
+            )
+
+            self.tokenizer = pytorch_transformers.XLNetTokenizer.from_pretrained(
+                '/Users/ljy/Work/Reseach_academy/github/jiant/xlnet/', cache_dir=self.cache_dir, do_lower_case="uncased" in args.tokenizer
+            )  # TODO: Speed things up slightly by reusing the previously-loaded tokenizer.
+            
+            
 
         self.model = pytorch_transformers.XLNetModel.from_pretrained(
             args.input_module, cache_dir=self.cache_dir, output_hidden_states=True
